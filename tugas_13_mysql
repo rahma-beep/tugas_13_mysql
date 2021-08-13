@@ -1,0 +1,19 @@
+DELIMITER //
+CREATE PROCEDURE penilaian(stambuk CHAR(8))
+    -> BEGIN
+    -> DECLARE ip DECIMAL(4,2);
+    -> SELECT semester_1 INTO ip FROM nilai_mahasiswa WHERE nim = stambuk;
+    -> CASE
+    -> WHEN (ip <= 1.00) THEN
+    -> SELECT 'Serius kuliah g sih?';
+    -> WHEN (ip <= 2.00) THEN
+    -> SELECT 'Kebanyakan main';
+    -> WHEN (ip <= 3.00) THEN
+    -> SELECT 'Berusaha lagi';
+    -> WHEN (ip <= 4.00) THEN
+    -> SELECT 'Mantap, pertahankan!';
+    -> ELSE
+    -> SELECT 'Nilai tidak sesuai';
+    -> END CASE;
+    -> END//
+DELIMITER ;
